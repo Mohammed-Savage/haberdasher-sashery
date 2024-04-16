@@ -10,7 +10,7 @@ app.debug = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 # Disable SQLALCHEMY_TRACK_MODIFICATIONS to conserve memory.
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
+db = SQLAlchemy()
 db.init_app(app)
 
 # Create table for users. Columns: id, email, password.
@@ -75,12 +75,14 @@ def bood_appointment():
     return jsonify({'message': 'Appointment booked successfully.'}), 201
 
 # Create route to serve frontend React. Creates a new route for the root URL path / . This responds to HTTP GET requests by default.
-@app.route('/')
+@app.route('/', methods=['GET'])
 def index():
+    return jsonify({'message': 'Welcome to Ahsery!'}), 200
     # return app.send_static_file('index.html')
 
 
-# When script is run directly and not imported as a module will create the necessary database tables and start the Flask development server.
+    # When script is run directly and not imported as a module will create the necessary database tables and start the Flask development server.
 if __name__ == '__main__':
-    db.create_all()
+    with app.app_context():
+        db.create_all()
     app.run(port=5555, debug=True)
