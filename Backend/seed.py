@@ -87,7 +87,7 @@ if __name__ == "__main__":
     with app.app_context():
         db.create_all()
         generate_users(10)
-        generate_appointments(20)
+        generate_appointments(10)
         generate_hats(5)
         generate_coats(5)
         generate_shirts(5)

@@ -4,7 +4,7 @@ import './App.css';
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 // TO-DO: Create and import the Navbar component.
-import Navbar from "./components/Navbar";
+// import Navbar from "./components/Navbar";
 import axios from 'axios';
 import Header from "./components/Header";
 import Login from "./components/Login";

@@ -1,5 +1,6 @@
 # Setting up imports.
 from flask import Flask, request, jsonify
+from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from models import db, User, Appointment, Hat, Coat, Shirt, Pant
@@ -12,6 +13,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///app.db"
 # Disable SQLALCHEMY_TRACK_MODIFICATIONS to conserve memory.
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy()
+migrate = Migrate(app, db)
 db.init_app(app)
 
 # These tables are outdated since we've imported the models.
