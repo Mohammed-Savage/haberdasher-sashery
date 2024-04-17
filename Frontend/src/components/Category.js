@@ -1,6 +1,7 @@
 // Set up our imports.
 import React from "react";
 
+// This is a placeholder component that will display the specific items in a category when called.
 const Category = ({ category }) => {
     return (
         <div>
