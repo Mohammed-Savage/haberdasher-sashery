@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Appointment from './components/Appointment';
+import Hat from './components/Hat';
 
 const router = createBrowserRouter([
   // {
@@ -17,9 +18,14 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
+        path: "/hats",
+        element: <Hat />
+      },
+      {
         path: "/appointments",
         element: <Appointment />
       },
+
     ]
   }
 ])

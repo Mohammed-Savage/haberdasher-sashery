@@ -3,6 +3,7 @@ from sqlalchemy import MetaData
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
 from sqlalchemy import ForeignKey
+from sqlalchemy_serializer import SerializerMixin
 import string, datetime
 
 metadata = MetaData(
@@ -58,7 +59,7 @@ class Appointment(db.Model):
             'user_id': self.user_id
         }
 
-class Hat(db.Model):
+class Hat(db.Model, SerializerMixin):
     __tablename__ = 'hats'
 
     id = db.Column(db.Integer, primary_key=True)

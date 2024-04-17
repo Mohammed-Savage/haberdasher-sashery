@@ -112,10 +112,10 @@ def get_appointments():
 
 
 # Create route to access hats.
-@app.route("/hats")
+@app.route("/api/hats")
 def get_hats():
     hats = Hat.query.all()
-    return jsonify([hat.serialize() for hat in hats])
+    return jsonify([hat.to_dict() for hat in hats])
 
 
 # Create route to access coats.

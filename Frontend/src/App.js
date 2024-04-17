@@ -13,12 +13,15 @@ import PrivateRoute from "./components/PrivateRoute";
 import Category from "./components/Category";
 import Appointment from "./components/Appointment";
 import AppointmentCard from './components/AppointmentCard';
+import Hat from "./components/Hat";
+import HatCard from "./components/HatCard";
 
 
 // Set up our App component.
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [appointments, setAppointments] = useState([]);
+  const [hats, setHats] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -32,6 +35,19 @@ const App = () => {
       }
     };
     fetchAppointments();
+  // }, []);
+
+  // useEffect(() => {
+    const fetchHats = async () => {
+      try {
+        const response = await axios.get('/api/hats');
+        setHats(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching hats:', error);
+      }
+    };
+    fetchHats();
   }, []);
 
   // const [hats, setHats] = useState([])
@@ -47,7 +63,7 @@ const App = () => {
     <div>
     <>
     <Header />
-    <Outlet context={{appointments}} />
+    <Outlet context={{appointments, hats}} />
       {/* {loading ? (
         <p>Loading...</p>
       ) : (
