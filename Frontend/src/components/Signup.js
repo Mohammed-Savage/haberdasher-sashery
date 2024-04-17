@@ -1,6 +1,7 @@
 // Importing Modules:
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom'; Deprecated replaced with useNavigate.
+import { useNavigate } from'react-router-dom';
 import axios from 'axios';
 
 // Creating functional component, "Signup":
@@ -10,7 +11,8 @@ const Signup = ({ setLoggedIn }) => {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     // TO-D: Update useHistory to useNavigate.
-    const history = useHistory();
+    // const history = useHistory(); Deprecated replaced with useNavigate.
+    const navigate = useNavigate();
 
     // Creating asynchronous function that handles sign up request when called.
     const handleSignUp = async () => {
@@ -18,7 +20,8 @@ const Signup = ({ setLoggedIn }) => {
         try {
             await axios.post('/api/signup', { email, password });
             setLoggedIn(true); // Update parent component state to indicate user is logged in.
-            history.push('/');
+            // history.push('/'); Deprecated replaced with useNavigate.
+            navigate('/');
         }   catch (error) {
             setError('Error signing up. Please try again.');
             console.error('Signup error:', error);

@@ -1,6 +1,7 @@
 // The first thing we need to do is import our modules.
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom'; Deprecated replaced with useNavigate.
+import { useNavigate } from'react-router-dom';
 import axios from 'axios';
 
 // Let's create our Login component.
@@ -13,7 +14,8 @@ const Login = ({ setLoggedIn }) => {
     const [loading, setLoading] = useState(false);
     // Finally we're using useHistory hook to create and access the history instance. 
     // TO-DO: Change useHistory to useNavigate.
-    const history = useHistory();
+    // const history = useHistory(); Deprecated replaced with useNavigate.
+    const navigate = useNavigate();
 
     // Let's write a function to handle our login process.
     const handleLogin = async () => {
@@ -29,7 +31,8 @@ const Login = ({ setLoggedIn }) => {
             setLoggedIn(true); 
             // The aforementioned line is how we update our parent component state to indicate the user is meow logged in.
             // We can't just leave our user hanging after successfully logging in. As such, we're going to call a function to forward the user to our home page.
-            history.push('/');
+            // history.push('/'); Deprecated replaced with useNavigate.
+            navigate('/');
         } catch (error) {
             // Should there be any errors during our login process we'll call the following function to update the error state variable with a custom message.
             setError('Invalid email or password');
