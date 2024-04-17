@@ -1,19 +1,27 @@
-# Setting up imports.
-from flask import Flask, request, jsonify
-from flask_migrate import Migrate
+from flask import Flask, make_response, jsonify, request, session, g
 from flask_sqlalchemy import SQLAlchemy
-from werkzeug.security import generate_password_hash, check_password_hash
-from models import db, User, Appointment, Hat, Coat, Shirt, Pant
+from flask_migrate import Migrate
+from flask_cors import CORS
+# from dotenv import dotenv_values
+from flask_bcrypt import Bcrypt
+from models import db, Hat, Coat, Shirt, Pant, User, Appointment
+import json
 
-# Initialize Database.
+# load the .env file where our secrets are stored
+# config = dotenv_values(".env")
+
 app = Flask(__name__)
-# Run app in debug mode.
 app.debug = True
+# get the flask secret key from the .env
+# (this is how you'll store and retrieve api keys as well)
+# app.secret_key = config['FLASK_SECRET_KEY']
+CORS(app)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///app.db"
-# Disable SQLALCHEMY_TRACK_MODIFICATIONS to conserve memory.
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-db = SQLAlchemy()
+app.json.compact = False
+# bcrypt = Bcrypt(app)
 migrate = Migrate(app, db)
+
 db.init_app(app)
 
 # These tables are outdated since we've imported the models.
@@ -97,7 +105,7 @@ def get_users():
 
 
 # Create route to access appointments.
-@app.route("/appointments")
+@app.route("/api/appointments")
 def get_appointments():
     appointments = Appointment.query.all()
     return jsonify([appointment.serialize() for appointment in appointments])

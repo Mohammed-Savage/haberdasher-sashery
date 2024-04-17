@@ -1,10 +1,20 @@
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import MetaData
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
 from sqlalchemy import ForeignKey
 import string, datetime
 
-db = SQLAlchemy()
+metadata = MetaData(
+    naming_convention={
+        "ix": "ix_%(column_0_label)s",
+        "uq": "uq_%(table_name)s_%(column_0_name)s",
+        "ck": "ck_%(table_name)s_%(constraint_name)s",
+        "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
+        "pk": "pk_%(table_name)s",
+    }
+)
+db = SQLAlchemy(metadata=metadata)
 
 class User(db.Model):
     __tablename__ = 'users'
@@ -24,7 +34,7 @@ class User(db.Model):
             'first_name': self.first_name,
             'last_name': self.last_name,
             # If I'm getting serialization errors I may need to change the serialization rules to add the following:
-            # 'appointments': [appointment.serialize() for appointment in self.appointments]
+            'appointments': [appointment.serialize() for appointment in self.appointments]
         }
 
 class Appointment(db.Model):
@@ -37,7 +47,7 @@ class Appointment(db.Model):
     user_id = db.Column(db.Integer, ForeignKey('users.id'), nullable=False)
 
     # If I'm getting errors I might need to include the following:
-    # user = relationship("User", back_populates="appointments")
+    user = relationship("User", back_populates="appointments")
 
     def serialize(self):
         return {
