@@ -6,7 +6,9 @@ const HatCard = ({ hat }) => {
             <h3>Hat Details</h3>
             <p>ID: {hat.id}</p>
             <p>Name: {hat.name}</p>
-            <p>Image: {hat.image}</p>
+            <img src={hat.image} alt={hat.name} /> 
+            {/* This will only display the image url, not the actual image.
+            <p>Image: {hat.image}</p> */}
             <p>Price: {hat.price}</p>
             <p>Description: {hat.description}</p>
         </div>
