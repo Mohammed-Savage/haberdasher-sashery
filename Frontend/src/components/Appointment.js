@@ -9,15 +9,15 @@ const Appointment = () => {
     const [selectedDate, setselectedDate] = useState("");
     const [selectedTime, setselectedTime] = useState("");
     const [bookingStatus, setBookingStatus] = useState("");
-    const { appointments} = useOutletContext()
+    const { appointments } = useOutletContext()
 
         const handleBookAppointment = async () => {
-        try {
-            const response = await axios.post('/api/appointments', { date: selectedDate, time: selectedTime });
-            setBookingStatus(response.data.message);
-        } catch (error) {
-            console.error('Booking Appointment Error', error);
-        }
+        // try {
+        //     const response = await axios.post('/api/appointments', { date: selectedDate, time: selectedTime });
+        //     setBookingStatus(response.data.message);
+        // } catch (error) {
+        //     console.error('Booking Appointment Error', error);
+        // }
     };
 
 

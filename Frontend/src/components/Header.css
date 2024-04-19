@@ -1,0 +1,65 @@
+.header-container {
+    background-color: #333;
+    /* Dark background color */
+    color: #fff;
+    /* White text color */
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Add shadow for depth */
+}
+
+.header-container h1 {
+    margin: 0;
+    font-size: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    /* Add text shadow for emphasis */
+}
+
+.nav-links {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-links li {
+    margin: 0 1rem;
+}
+
+.nav-links li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+    /* Add transition for smooth hover effect */
+    background: linear-gradient(to right, #4CAF50, #FF5733);
+    /* Add gradient background */
+    border-radius: 20px;
+    /* Add border-radius for rounded corners */
+    padding: 0.5rem 1rem;
+    /* Add padding for better spacing */
+}
+
+.nav-links li a:hover {
+    color: #fff;
+    transform: translateY(-2px) scale(1.05);
+    /* Add subtle hover effect with scaling */
+}
+
+.nav-links li button {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+    /* Add transition for smooth hover effect */
+}
+
+.nav-links li button:hover {
+    color: #ff5733;
+    /* Change color on hover */
+    transform: scale(1.05);
+    /* Add scaling effect on hover */
+}
